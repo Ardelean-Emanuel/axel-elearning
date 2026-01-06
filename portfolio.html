@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects Showcase | Axel eLearning</title>
-  <meta name="description" content="Explore our portfolio of custom Moodle development projects. From enterprise integrations to legacy rescues, see how we've helped organizations maximize their Moodle platform.">
+  <meta name="description" content="Selected Moodle platforms delivered by Axel eLearning. Custom development, integrations, theming, and ongoing support for enterprise learning systems.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Projects Showcase | Axel eLearning">
-  <meta property="og:description" content="Custom Moodle development portfolio. Enterprise integrations, plugin development, and legacy modernization projects.">
+  <meta property="og:description" content="Selected Moodle platforms delivered by Axel eLearning. Enterprise integrations, custom development, and learning platform engineering.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://axelelearning.com/portfolio">
 
-  <!-- Favicon placeholder -->
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>A</text></svg>">
 
   <!-- Google Fonts -->
@@ -48,6 +47,190 @@
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Portfolio-specific styles */
+    .project-section {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-number {
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 20vw, 16rem);
+      line-height: 0.8;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(230, 126, 34, 0.15);
+      position: absolute;
+      top: -2rem;
+      left: -1rem;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (min-width: 1024px) {
+      .project-number {
+        left: -3rem;
+        top: -3rem;
+      }
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+
+    .gradient-panel {
+      background:
+        linear-gradient(135deg, rgba(230, 126, 34, 0.08) 0%, rgba(26, 26, 29, 0.9) 50%, rgba(184, 115, 51, 0.05) 100%),
+        radial-gradient(ellipse at 30% 20%, rgba(230, 126, 34, 0.12) 0%, transparent 50%);
+      border: 1px solid var(--color-border-accent);
+    }
+
+    .tag-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.375rem 0.875rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      background: rgba(230, 126, 34, 0.1);
+      color: var(--color-accent);
+      border: 1px solid rgba(230, 126, 34, 0.25);
+    }
+
+    .nda-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      background: rgba(107, 107, 112, 0.2);
+      color: var(--color-text-muted);
+      border: 1px solid rgba(107, 107, 112, 0.3);
+    }
+
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .snapshot-cell {
+      background: var(--color-bg-elevated);
+      padding: 1rem;
+    }
+
+    .snapshot-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .snapshot-value {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    .engineering-note {
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .engineering-note::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 3px;
+      height: calc(100% - 1rem);
+      background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-copper) 100%);
+      border-radius: 2px;
+    }
+
+    .visual-panel {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: 12px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(230, 126, 34, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 70%, rgba(184, 115, 51, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-surface) 100%);
+      border: 1px solid var(--color-border);
+    }
+
+    .visual-panel-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .visual-chip {
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      color: var(--color-text-secondary);
+    }
+
+    .deliverable-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .deliverable-item:last-child {
+      border-bottom: none;
+    }
+
+    .deliverable-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+
+    /* Stagger delays for projects */
+    .project-section:nth-child(1) { transition-delay: 0.1s; }
+    .project-section:nth-child(2) { transition-delay: 0.2s; }
+    .project-section:nth-child(3) { transition-delay: 0.3s; }
+  </style>
 </head>
 <body class="font-body bg-bg-deep text-text-primary">
   <!-- Skip Link -->
@@ -75,7 +258,7 @@
         <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
           <a href="index.html#how-we-work" class="text-sm text-text-secondary hover:text-accent transition-colors accent-underline">How We Work</a>
           <a href="index.html#services" class="text-sm text-text-secondary hover:text-accent transition-colors accent-underline">Services</a>
-          <a href="portfolio.html" class="text-sm text-accent accent-underline">Showcase</a>
+          <a href="portfolio.html" class="text-sm text-accent accent-underline" aria-current="page">Showcase</a>
           <a href="index.html#about" class="text-sm text-text-secondary hover:text-accent transition-colors accent-underline">About Us</a>
           <a href="index.html#contact" class="text-sm text-text-secondary hover:text-accent transition-colors accent-underline">Contact</a>
         </nav>
@@ -105,7 +288,7 @@
   <nav class="mobile-menu lg:hidden" id="mobile-menu" aria-label="Mobile navigation">
     <a href="index.html#how-we-work" class="mobile-nav-link">How We Work</a>
     <a href="index.html#services" class="mobile-nav-link">Services</a>
-    <a href="portfolio.html" class="mobile-nav-link">Showcase</a>
+    <a href="portfolio.html" class="mobile-nav-link" aria-current="page">Showcase</a>
     <a href="index.html#about" class="mobile-nav-link">About Us</a>
     <a href="index.html#contact" class="mobile-nav-link">Contact</a>
     <div class="mt-8 pt-8 border-t border-white/10">
@@ -120,24 +303,40 @@
   </nav>
 
   <main id="main-content">
-    <!-- Page Hero -->
-    <section class="relative min-h-[60vh] flex items-center bg-gradient-hero pt-20 overflow-hidden">
-      <!-- Decorative orbs -->
-      <div class="orb-glow orb-glow-orange w-80 h-80 -top-40 right-0 opacity-25" aria-hidden="true"></div>
-      <div class="orb-glow orb-glow-copper w-64 h-64 bottom-0 left-1/4 opacity-15" aria-hidden="true"></div>
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex items-center bg-gradient-hero pt-24 lg:pt-32 overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="orb-glow orb-glow-orange w-96 h-96 -top-48 right-0 opacity-20" aria-hidden="true"></div>
+      <div class="orb-glow orb-glow-copper w-72 h-72 bottom-0 left-1/4 opacity-10" aria-hidden="true"></div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
+      <!-- Diagonal line accent -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="absolute top-1/2 -left-1/4 w-[150%] h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent transform -rotate-6"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full relative">
         <div class="max-w-3xl">
           <p class="section-label animate-on-load animate-fade-in-up">Our Work</p>
-          <h1 class="hero-title mb-4 animate-on-load animate-fade-in-up delay-100">
+          <h1 class="hero-title mb-6 animate-on-load animate-fade-in-up delay-100">
             PROJECTS<br>
             <span class="text-accent">SHOWCASE</span>
           </h1>
-          <p class="hero-subtitle mb-6 animate-on-load animate-fade-in-up delay-200">Unlocking Your Vision: Axel eLearning Portfolio</p>
-          <p class="text-text-secondary mb-8 animate-on-load animate-fade-in-up delay-300">Every project here represents a real challenge solved. We've helped organizations modernize legacy platforms, build custom integrations, and create learning experiences that actually work. These examples show how we approach problems — with transparency, technical depth, and a commitment to solutions that last.</p>
+          <p class="hero-subtitle mb-6 animate-on-load animate-fade-in-up delay-200">
+            Selected Moodle platforms delivered by Axel eLearning
+          </p>
+          <div class="glass-panel p-5 mb-8 animate-on-load animate-fade-in-up delay-300">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <p class="text-sm text-text-secondary leading-relaxed">
+                Some project details and metrics are confidential. Where we can't share specifics publicly, we label items as <span class="nda-badge ml-1">Available under NDA</span>
+              </p>
+            </div>
+          </div>
           <div class="animate-on-load animate-fade-in-up delay-400">
             <a href="index.html#contact" class="btn-primary">
-              Start Your Project
+              Request a Proposal
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
@@ -147,588 +346,556 @@
       </div>
     </section>
 
-    <!-- Project List -->
-    <section class="relative py-20 lg:py-32 bg-bg-surface">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-4">
-          <p class="text-xs text-text-muted uppercase tracking-wider">Example projects — details anonymized where required</p>
-        </div>
+    <!-- Projects Container -->
+    <div class="relative">
+      <!-- Connecting vertical line -->
+      <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent/20 via-accent/10 to-transparent hidden lg:block" aria-hidden="true"></div>
 
-        <div class="space-y-8 lg:space-y-12">
-          <!-- Project 1: ICM -->
-          <article class="glass-panel project-card p-6 lg:p-10 card-hover">
-            <div class="grid lg:grid-cols-3 gap-8">
-              <!-- Project Info -->
-              <div class="lg:col-span-2">
-                <div class="flex flex-wrap items-center gap-3 mb-4">
-                  <span class="text-xs font-semibold bg-accent/10 text-accent px-3 py-1 rounded-full">Enterprise Integration</span>
-                  <span class="text-xs text-text-muted">Moodle 3.9</span>
-                </div>
-                <h2 class="font-display text-2xl lg:text-3xl tracking-wide mb-4">ICM — IMPLEMENTING COMPLEX EDUCATIONAL & MARKETING NEEDS IN MOODLE</h2>
+      <!-- ==================== PROJECT 1: UNV Learning Portal ==================== -->
+      <section class="project-section relative py-20 lg:py-32 bg-bg-surface border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Project Number (decorative) -->
+          <div class="project-number" aria-hidden="true">01</div>
 
-                <div class="space-y-6">
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Context</h3>
-                    <p class="text-text-secondary text-sm leading-relaxed">A membership organization needed to deliver educational content to different audience segments while supporting marketing automation and complex enrollment rules. Their existing Moodle setup couldn't handle the business logic they required.</p>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">What We Built</h3>
-                    <ul class="space-y-2">
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Custom enrollment plugin with conditional logic based on membership status, purchase history, and segment tags</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Integration with marketing automation platform via webhooks for learner engagement tracking</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Custom reporting dashboard for marketing team with segment performance metrics</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Branded theme with dynamic content blocks based on user segment</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Version & Constraints</h3>
-                    <p class="text-text-secondary text-sm">Moodle 3.9 LTS. Client required compatibility with their existing CRM and couldn't upgrade PHP version during project timeline. All customizations built as standalone plugins to ensure upgrade safety.</p>
-                  </div>
-                </div>
+          <div class="relative z-10">
+            <!-- Project Header -->
+            <div class="mb-12 lg:mb-16">
+              <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="tag-chip">Integration</span>
+                <span class="tag-chip">Theming</span>
+                <span class="tag-chip">Support</span>
               </div>
+              <h2 class="project-title mb-4">UNV LEARNING PORTAL</h2>
+              <a href="https://learning.unv.org/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors group">
+                <span class="text-sm font-medium">learning.unv.org</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
 
-              <!-- Outcome & Deliverables -->
-              <div class="space-y-6">
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Outcome</h3>
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Enrollment automation</span>
-                      <span class="font-display text-xl text-accent">100%</span>
+            <!-- Two Column Layout -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+              <!-- Left: Content -->
+              <div class="space-y-8">
+                <!-- Snapshot -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Snapshot</h3>
+                  <div class="snapshot-grid">
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Platform</p>
+                      <p class="snapshot-value">Moodle&trade;</p>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Manual processing reduced</span>
-                      <span class="font-display text-xl text-accent">~40hrs/mo</span>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Version</p>
+                      <p class="snapshot-value">Varies / Any</p>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Marketing integration</span>
-                      <span class="font-display text-xl text-accent">Active</span>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Engagement</p>
+                      <p class="snapshot-value">Development & Support</p>
+                    </div>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Role</p>
+                      <p class="snapshot-value">Moodle Engineering</p>
                     </div>
                   </div>
-                  <p class="text-xs text-text-muted mt-4 pt-4 border-t border-white/10">Metrics provided by client post-launch</p>
                 </div>
 
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Deliverables</h3>
-                  <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                <!-- What We Did -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">What We Did</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                       </svg>
-                      <span>4 custom plugins</span>
+                      <span>Custom theme development aligned with UN branding guidelines</span>
                     </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                       </svg>
-                      <span>Custom theme</span>
+                      <span>Integration with volunteer management and HR systems</span>
                     </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                       </svg>
-                      <span>API documentation</span>
+                      <span>Custom reporting plugins for training completion tracking</span>
                     </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                       </svg>
-                      <span>Admin training session</span>
+                      <span>Multi-language configuration and RTL support</span>
                     </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                       </svg>
-                      <span>Handover documentation</span>
+                      <span>Ongoing platform support and maintenance</span>
                     </li>
                   </ul>
                 </div>
-              </div>
-            </div>
-          </article>
 
-          <!-- Project 2: Roche Diagnostics -->
-          <article class="glass-panel project-card p-6 lg:p-10 card-hover">
-            <div class="grid lg:grid-cols-3 gap-8">
-              <!-- Project Info -->
-              <div class="lg:col-span-2">
-                <div class="flex flex-wrap items-center gap-3 mb-4">
-                  <span class="text-xs font-semibold bg-accent/10 text-accent px-3 py-1 rounded-full">User Management</span>
-                  <span class="text-xs text-text-muted">Moodle 3.11</span>
-                </div>
-                <h2 class="font-display text-2xl lg:text-3xl tracking-wide mb-4">ROCHE DIAGNOSTICS — STREAMLINED USER MANAGEMENT IN MOODLE</h2>
-
-                <div class="space-y-6">
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Context</h3>
-                    <p class="text-text-secondary text-sm leading-relaxed">A global diagnostics company needed to provision users from their HR system into Moodle with complex role assignments based on department, location, and job function. Manual user management was consuming significant admin time and causing enrollment delays.</p>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">What We Built</h3>
-                    <ul class="space-y-2">
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Automated user sync plugin connecting HRIS to Moodle via scheduled REST API calls</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Role mapping engine with configurable rules (department → cohort → course enrollments)</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Audit logging for compliance (who was created/modified/deactivated and when)</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Admin dashboard showing sync status, errors, and user lifecycle metrics</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Version & Constraints</h3>
-                    <p class="text-text-secondary text-sm">Moodle 3.11 with strict security requirements. All data transfers encrypted. Plugin underwent internal security review before deployment. Built to handle 10,000+ user accounts with daily sync operations.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Outcome & Deliverables -->
-              <div class="space-y-6">
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Outcome</h3>
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">User sync automation</span>
-                      <span class="font-display text-xl text-accent">Daily</span>
-                    </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Admin time saved</span>
-                      <span class="font-display text-xl text-accent">~20hrs/mo</span>
-                    </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Enrollment accuracy</span>
-                      <span class="font-display text-xl text-accent">99.8%</span>
-                    </div>
-                  </div>
-                  <p class="text-xs text-text-muted mt-4 pt-4 border-t border-white/10">Metrics estimated based on client feedback</p>
-                </div>
-
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Deliverables</h3>
-                  <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>User sync plugin</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Role mapping configuration UI</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Security documentation</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Admin guide + training</span>
-                    </li>
+                <!-- Engineering Notes -->
+                <div class="engineering-note">
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Engineering Notes</h3>
+                  <ul class="space-y-2 text-sm text-text-secondary">
+                    <li><strong class="text-text-primary">Upgrade-safe:</strong> All customizations via plugins and theme inheritance, no core modifications</li>
+                    <li><strong class="text-text-primary">Standards:</strong> Follows Moodle coding guidelines and WCAG 2.1 accessibility requirements</li>
+                    <li><strong class="text-text-primary">Performance:</strong> Caching strategies and database query optimization for global user base</li>
+                    <li><strong class="text-text-primary">QA:</strong> Code review, staging environment testing, and UAT before deployment</li>
                   </ul>
                 </div>
               </div>
-            </div>
-          </article>
 
-          <!-- Project 3: Horizon Flight Academy -->
-          <article class="glass-panel project-card p-6 lg:p-10 card-hover">
-            <div class="grid lg:grid-cols-3 gap-8">
-              <!-- Project Info -->
-              <div class="lg:col-span-2">
-                <div class="flex flex-wrap items-center gap-3 mb-4">
-                  <span class="text-xs font-semibold bg-accent/10 text-accent px-3 py-1 rounded-full">Plugin Rescue</span>
-                  <span class="text-xs text-text-muted">Moodle 3.5 → 4.1</span>
-                </div>
-                <h2 class="font-display text-2xl lg:text-3xl tracking-wide mb-4">HORIZON FLIGHT ACADEMY — MOODLE PLUGIN RESCUE & ENHANCEMENT</h2>
-
-                <div class="space-y-6">
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Context</h3>
-                    <p class="text-text-secondary text-sm leading-relaxed">An aviation training academy was running critical compliance tracking through a custom plugin built by a previous developer who was no longer available. The plugin worked on Moodle 3.5 but wouldn't survive an upgrade, and the codebase had no documentation.</p>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">What We Built</h3>
-                    <ul class="space-y-2">
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Full code audit and documentation of existing plugin functionality</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Refactored plugin using modern Moodle APIs, eliminating deprecated function calls</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Added new features: automated certificate generation, competency matrix exports</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Staged upgrade from Moodle 3.5 → 3.11 → 4.1 with plugin tested at each step</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Version & Constraints</h3>
-                    <p class="text-text-secondary text-sm">Started on Moodle 3.5 (legacy), upgraded to 4.1. Compliance data could not be lost during migration. Plugin needed to maintain backwards compatibility with existing completion records while supporting new tracking features.</p>
+              <!-- Right: Visual + Outcomes -->
+              <div class="space-y-8">
+                <!-- Visual Panel -->
+                <div class="visual-panel">
+                  <div class="absolute inset-0 bg-grid-pattern opacity-30" aria-hidden="true"></div>
+                  <div class="visual-panel-label">
+                    <span class="visual-chip">Integration</span>
+                    <span class="visual-chip">Theme</span>
+                    <span class="visual-chip">Reporting</span>
                   </div>
                 </div>
-              </div>
 
-              <!-- Outcome & Deliverables -->
-              <div class="space-y-6">
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Outcome</h3>
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Data preserved</span>
-                      <span class="font-display text-xl text-accent">100%</span>
+                <!-- Outcomes -->
+                <div class="glass-panel p-6">
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Outcomes</h3>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="nda-badge">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                      </svg>
+                      Detailed outcomes available under NDA
+                    </span>
+                  </div>
+                  <p class="text-sm text-text-secondary">Platform serves UN Volunteers globally. Specific metrics and internal KPIs are confidential.</p>
+                </div>
+
+                <!-- Deliverables -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Deliverables & Handover</h3>
+                  <div class="glass-panel p-4">
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Source Code</p>
+                        <p class="text-xs text-text-muted">Theme and plugin repositories with version control</p>
+                      </div>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Moodle version</span>
-                      <span class="font-display text-xl text-accent">4.1 LTS</span>
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Documentation</p>
+                        <p class="text-xs text-text-muted">Technical specs, admin guides, and inline code comments</p>
+                      </div>
                     </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">New features added</span>
-                      <span class="font-display text-xl text-accent">3</span>
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Deployment & Support</p>
+                        <p class="text-xs text-text-muted">Production deployment guidance and ongoing maintenance</p>
+                      </div>
                     </div>
                   </div>
-                  <p class="text-xs text-text-muted mt-4 pt-4 border-t border-white/10">Zero compliance records lost during upgrade</p>
                 </div>
 
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Deliverables</h3>
-                  <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Modernized plugin code</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Upgrade migration scripts</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Technical documentation</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>User guide for new features</span>
-                    </li>
-                  </ul>
-                </div>
+                <!-- CTA -->
+                <a href="index.html#contact" class="btn-secondary w-full justify-center">
+                  Request Something Similar
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
               </div>
             </div>
-          </article>
-
-          <!-- Project 4: Ultimaker -->
-          <article class="glass-panel project-card p-6 lg:p-10 card-hover">
-            <div class="grid lg:grid-cols-3 gap-8">
-              <!-- Project Info -->
-              <div class="lg:col-span-2">
-                <div class="flex flex-wrap items-center gap-3 mb-4">
-                  <span class="text-xs font-semibold bg-accent/10 text-accent px-3 py-1 rounded-full">Custom Development</span>
-                  <span class="text-xs text-text-muted">Moodle 4.0</span>
-                </div>
-                <h2 class="font-display text-2xl lg:text-3xl tracking-wide mb-4">ULTIMAKER — INNOVATING 3D PRINTING EDUCATION WITH MOODLE CUSTOMIZATION</h2>
-
-                <div class="space-y-6">
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Context</h3>
-                    <p class="text-text-secondary text-sm leading-relaxed">A 3D printing company wanted to deliver certification courses for their hardware products globally. They needed a customer-facing learning portal that integrated with their e-commerce platform and product registration system.</p>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">What We Built</h3>
-                    <ul class="space-y-2">
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Custom theme matching brand guidelines with product-focused navigation</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>SSO integration with customer portal (OAuth 2.0)</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Auto-enrollment based on product registration (purchased product → relevant training)</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Branded certification system with verifiable digital badges</span>
-                      </li>
-                      <li class="flex items-start gap-2 text-sm text-text-secondary">
-                        <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Multi-language support for global rollout</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-2">Version & Constraints</h3>
-                    <p class="text-text-secondary text-sm">Moodle 4.0 (fresh installation). High-traffic requirements with customers worldwide. Theme needed to work seamlessly across devices as many users access from workshop environments on tablets.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Outcome & Deliverables -->
-              <div class="space-y-6">
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Outcome</h3>
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Languages supported</span>
-                      <span class="font-display text-xl text-accent">8</span>
-                    </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">SSO integration</span>
-                      <span class="font-display text-xl text-accent">Active</span>
-                    </div>
-                    <div class="flex justify-between items-baseline">
-                      <span class="text-sm text-text-muted">Mobile responsive</span>
-                      <span class="font-display text-xl text-accent">Yes</span>
-                    </div>
-                  </div>
-                  <p class="text-xs text-text-muted mt-4 pt-4 border-t border-white/10">Platform live and serving customers globally</p>
-                </div>
-
-                <div class="glass-panel p-5">
-                  <h3 class="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4">Deliverables</h3>
-                  <ul class="space-y-2">
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Custom theme</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>SSO authentication plugin</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Product enrollment plugin</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Badge/certification system</span>
-                    </li>
-                    <li class="flex items-center gap-2 text-sm text-text-secondary">
-                      <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                      <span>Admin + content creator training</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio Excellence -->
-    <section class="relative py-20 lg:py-32 bg-gradient-dark overflow-hidden">
-      <div class="orb-glow orb-glow-copper w-80 h-80 top-1/2 -translate-y-1/2 -left-40 opacity-15" aria-hidden="true"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="text-center mb-12 lg:mb-16">
-          <p class="section-label">Our Approach</p>
-          <h2 class="section-title">PORTFOLIO EXCELLENCE</h2>
-          <p class="text-text-secondary max-w-2xl mx-auto">Every project follows the same principles: understand the problem, build maintainable solutions, and deliver with complete documentation.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-          <!-- Tailored Themes -->
-          <div class="glass-panel p-6 lg:p-8 card-hover">
-            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 to-copper/20 flex items-center justify-center mb-6">
-              <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
-              </svg>
-            </div>
-            <h3 class="font-display text-xl tracking-wide mb-3">TAILORED THEMES</h3>
-            <p class="text-sm text-text-muted uppercase tracking-wider mb-4">Branding → Functionality</p>
-            <p class="text-text-secondary text-sm leading-relaxed mb-4">Themes aren't just about colors and logos. We build experiences that reflect your organization's identity while maintaining Moodle's usability and upgrade compatibility.</p>
-            <ul class="space-y-2">
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>Responsive across all devices</span>
-              </li>
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>WCAG accessibility compliance</span>
-              </li>
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>Boost-based for upgrade safety</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Dynamic Learning Modules -->
-          <div class="glass-panel p-6 lg:p-8 card-hover">
-            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 to-copper/20 flex items-center justify-center mb-6">
-              <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-              </svg>
-            </div>
-            <h3 class="font-display text-xl tracking-wide mb-3">DYNAMIC LEARNING MODULES</h3>
-            <p class="text-sm text-text-muted uppercase tracking-wider mb-4">Curriculum → Delivery</p>
-            <p class="text-text-secondary text-sm leading-relaxed mb-4">Custom activity modules and course formats that match how your learners actually learn. We build tools that support your pedagogy, not the other way around.</p>
-            <ul class="space-y-2">
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>Custom activity types</span>
-              </li>
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>Gradebook integration</span>
-              </li>
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>Completion tracking</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Custom Plugins -->
-          <div class="glass-panel p-6 lg:p-8 card-hover">
-            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 to-copper/20 flex items-center justify-center mb-6">
-              <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-              </svg>
-            </div>
-            <h3 class="font-display text-xl tracking-wide mb-3">CUSTOM PLUGINS</h3>
-            <p class="text-sm text-text-muted uppercase tracking-wider mb-4">Tailored Functionality + Transparency</p>
-            <p class="text-text-secondary text-sm leading-relaxed mb-4">Every plugin we deliver comes with inline code comments, external documentation, and clear instructions for your team. You'll never be locked in to us for maintenance.</p>
-            <ul class="space-y-2">
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>Moodle coding standards</span>
-              </li>
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>PHPDoc documentation</span>
-              </li>
-              <li class="flex items-center gap-2 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>External admin/user guides</span>
-              </li>
-            </ul>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Final CTA -->
-    <section class="relative py-20 lg:py-32 bg-bg-surface overflow-hidden">
-      <div class="orb-glow orb-glow-orange w-96 h-96 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 opacity-20" aria-hidden="true"></div>
+      <!-- ==================== PROJECT 2: EU Customs & Taxation ==================== -->
+      <section class="project-section relative py-20 lg:py-32 bg-bg-deep border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Project Number (decorative) -->
+          <div class="project-number lg:text-right lg:right-0 lg:left-auto" aria-hidden="true">02</div>
 
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        <p class="section-label">Let's Build Something</p>
-        <h2 class="font-display text-4xl lg:text-6xl tracking-wide mb-6">READY TO START?</h2>
-        <p class="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">Whether you need a custom integration, a legacy rescue, or a complete Moodle overhaul, we're here to help. Let's talk about your project.</p>
+          <div class="relative z-10">
+            <!-- Project Header -->
+            <div class="mb-12 lg:mb-16 lg:text-right">
+              <div class="flex flex-wrap items-center gap-3 mb-6 lg:justify-end">
+                <span class="tag-chip">Integration</span>
+                <span class="tag-chip">Automation</span>
+                <span class="tag-chip">Reporting</span>
+                <span class="tag-chip">Support</span>
+              </div>
+              <h2 class="project-title mb-4">EU CUSTOMS & TAXATION<br class="hidden lg:block"> LEARNING PORTAL</h2>
+              <a href="https://customs-taxation.learning.europa.eu/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors group">
+                <span class="text-sm font-medium">customs-taxation.learning.europa.eu</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <!-- Two Column Layout (Reversed) -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+              <!-- Left: Visual + Outcomes (appears first on mobile) -->
+              <div class="space-y-8 lg:order-2">
+                <!-- Snapshot -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Snapshot</h3>
+                  <div class="snapshot-grid">
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Platform</p>
+                      <p class="snapshot-value">Moodle&trade;</p>
+                    </div>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Version</p>
+                      <p class="snapshot-value">Varies / Any</p>
+                    </div>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Engagement</p>
+                      <p class="snapshot-value">Development & Support</p>
+                    </div>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Role</p>
+                      <p class="snapshot-value">Moodle Engineering</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- What We Did -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">What We Did</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>EU Login (ECAS) authentication integration</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Custom course catalogue with advanced filtering and search</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Automated enrollment workflows based on organizational roles</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Custom reporting for compliance training across EU member states</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Multi-language support for all EU official languages</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Ongoing platform maintenance and feature development</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Engineering Notes -->
+                <div class="engineering-note">
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Engineering Notes</h3>
+                  <ul class="space-y-2 text-sm text-text-secondary">
+                    <li><strong class="text-text-primary">Upgrade-safe:</strong> Plugin-first architecture, fully compatible with Moodle upgrade path</li>
+                    <li><strong class="text-text-primary">Standards:</strong> Moodle coding guidelines, EU accessibility standards (EN 301 549)</li>
+                    <li><strong class="text-text-primary">Security:</strong> EU institutional security requirements, GDPR compliance considerations</li>
+                    <li><strong class="text-text-primary">QA:</strong> Rigorous testing cycles, staging validation, and phased rollouts</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Right: Content (appears second on mobile) -->
+              <div class="space-y-8 lg:order-1">
+                <!-- Visual Panel -->
+                <div class="visual-panel">
+                  <div class="absolute inset-0 bg-grid-pattern opacity-30" aria-hidden="true"></div>
+                  <div class="visual-panel-label">
+                    <span class="visual-chip">EU Login</span>
+                    <span class="visual-chip">Automation</span>
+                    <span class="visual-chip">Catalogue</span>
+                  </div>
+                </div>
+
+                <!-- Outcomes -->
+                <div class="glass-panel p-6">
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Outcomes</h3>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="nda-badge">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                      </svg>
+                      Detailed outcomes available under NDA
+                    </span>
+                  </div>
+                  <p class="text-sm text-text-secondary">Platform serves customs and taxation officials across EU member states. Usage statistics and internal metrics are confidential.</p>
+                </div>
+
+                <!-- Deliverables -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Deliverables & Handover</h3>
+                  <div class="glass-panel p-4">
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Source Code</p>
+                        <p class="text-xs text-text-muted">Custom plugins, authentication modules, and integrations</p>
+                      </div>
+                    </div>
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Documentation</p>
+                        <p class="text-xs text-text-muted">Architecture docs, API references, and administrator guides</p>
+                      </div>
+                    </div>
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Deployment & Support</p>
+                        <p class="text-xs text-text-muted">EU infrastructure deployment and continuous support</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CTA -->
+                <a href="index.html#contact" class="btn-secondary w-full justify-center">
+                  Request Something Similar
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== PROJECT 3: EU Academy ==================== -->
+      <section class="project-section relative py-20 lg:py-32 bg-bg-surface border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Project Number (decorative) -->
+          <div class="project-number" aria-hidden="true">03</div>
+
+          <div class="relative z-10">
+            <!-- Project Header -->
+            <div class="mb-12 lg:mb-16">
+              <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="tag-chip">Integration</span>
+                <span class="tag-chip">Theming</span>
+                <span class="tag-chip">Reporting</span>
+                <span class="tag-chip">Automation</span>
+              </div>
+              <h2 class="project-title mb-4">EU ACADEMY</h2>
+              <a href="https://academy.europa.eu/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors group">
+                <span class="text-sm font-medium">academy.europa.eu</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+              <!-- Left: Content -->
+              <div class="space-y-8">
+                <!-- Snapshot -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Snapshot</h3>
+                  <div class="snapshot-grid">
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Platform</p>
+                      <p class="snapshot-value">Moodle&trade;</p>
+                    </div>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Version</p>
+                      <p class="snapshot-value">Varies / Any</p>
+                    </div>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Engagement</p>
+                      <p class="snapshot-value">Development & Support</p>
+                    </div>
+                    <div class="snapshot-cell">
+                      <p class="snapshot-label">Role</p>
+                      <p class="snapshot-value">Moodle Engineering</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- What We Did -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">What We Did</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Large-scale course catalogue and learning path management</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Cross-institutional enrollment and access control systems</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>EU Login integration and federated identity management</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Custom analytics and institutional reporting dashboards</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Theme customization aligned with EU institutional branding</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-text-secondary">
+                      <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      <span>Platform support, bug fixes, and continuous improvement</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Engineering Notes -->
+                <div class="engineering-note">
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Engineering Notes</h3>
+                  <ul class="space-y-2 text-sm text-text-secondary">
+                    <li><strong class="text-text-primary">Upgrade-safe:</strong> Modular plugin architecture, no core file modifications</li>
+                    <li><strong class="text-text-primary">Standards:</strong> Moodle coding guidelines, EN 301 549 accessibility, WCAG 2.1 AA</li>
+                    <li><strong class="text-text-primary">Performance:</strong> Optimized for high-traffic institutional use across EU</li>
+                    <li><strong class="text-text-primary">QA:</strong> Comprehensive testing, peer code review, and staged deployments</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Right: Visual + Outcomes -->
+              <div class="space-y-8">
+                <!-- Visual Panel -->
+                <div class="visual-panel">
+                  <div class="absolute inset-0 bg-grid-pattern opacity-30" aria-hidden="true"></div>
+                  <div class="visual-panel-label">
+                    <span class="visual-chip">Catalogue</span>
+                    <span class="visual-chip">Analytics</span>
+                    <span class="visual-chip">EU Login</span>
+                  </div>
+                </div>
+
+                <!-- Outcomes -->
+                <div class="glass-panel p-6">
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Outcomes</h3>
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="nda-badge">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                      </svg>
+                      Detailed outcomes available under NDA
+                    </span>
+                  </div>
+                  <p class="text-sm text-text-secondary">EU-wide learning platform serving multiple institutions. Specific user counts and performance metrics are confidential.</p>
+                </div>
+
+                <!-- Deliverables -->
+                <div>
+                  <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-4">Deliverables & Handover</h3>
+                  <div class="glass-panel p-4">
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Source Code</p>
+                        <p class="text-xs text-text-muted">Plugins, theme components, and integration modules</p>
+                      </div>
+                    </div>
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Documentation</p>
+                        <p class="text-xs text-text-muted">Technical documentation, user guides, and training materials</p>
+                      </div>
+                    </div>
+                    <div class="deliverable-item">
+                      <svg class="deliverable-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536"/>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-text-primary">Deployment & Support</p>
+                        <p class="text-xs text-text-muted">Production deployment and ongoing maintenance contracts</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CTA -->
+                <a href="index.html#contact" class="btn-secondary w-full justify-center">
+                  Request Something Similar
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Final CTA Section -->
+    <section class="relative py-24 lg:py-32 bg-gradient-dark overflow-hidden border-t border-white/5">
+      <div class="orb-glow orb-glow-orange w-96 h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15" aria-hidden="true"></div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <p class="section-label">Ready to Start?</p>
+        <h2 class="font-display text-4xl lg:text-6xl tracking-wide mb-6">
+          LET'S BUILD<br>
+          <span class="text-accent">SOMETHING GREAT</span>
+        </h2>
+        <p class="text-text-secondary mb-8 max-w-2xl mx-auto">
+          Whether you need custom development, integrations, or ongoing support for your Moodle platform, we're ready to help. Tell us about your project.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="index.html#contact" class="btn-primary">
             Request a Proposal
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -742,8 +909,6 @@
             +1 (234) 567-890
           </a>
         </div>
-
-        <p class="text-sm text-text-muted">No obligation. We'll respond within 1-2 business days.</p>
       </div>
     </section>
   </main>
@@ -760,22 +925,28 @@
             </div>
             <span class="font-display text-xl tracking-wide">AXEL <span class="text-accent">eLEARNING</span></span>
           </a>
-          <p class="text-text-secondary text-sm mb-4 max-w-md">Custom Moodle development and support for any version. Upgrade-safe plugins, integrations, themes, and legacy modernization.</p>
-          <address class="not-italic text-sm text-text-muted">
-            123 Learning Street<br>
-            Education City, EC 12345<br>
-            <a href="mailto:hello@axelelearning.com" class="hover:text-accent transition-colors">hello@axelelearning.com</a><br>
-            <a href="tel:+1234567890" class="hover:text-accent transition-colors">+1 (234) 567-890</a>
+          <p class="text-text-secondary text-sm mb-4 max-w-md">
+            Moodle specialists delivering custom development, integrations, and ongoing support for learning platforms worldwide.
+          </p>
+          <address class="not-italic text-sm text-text-muted space-y-1">
+            <p>123 Business Street</p>
+            <p>City, Country 12345</p>
+            <p class="mt-3">
+              <a href="mailto:hello@axelelearning.com" class="text-text-secondary hover:text-accent transition-colors">hello@axelelearning.com</a>
+            </p>
+            <p>
+              <a href="tel:+1234567890" class="text-text-secondary hover:text-accent transition-colors">+1 (234) 567-890</a>
+            </p>
           </address>
         </div>
 
         <!-- Quick Links -->
         <div>
-          <h3 class="font-display text-lg tracking-wide mb-4">QUICK LINKS</h3>
+          <h3 class="font-semibold text-sm uppercase tracking-wider mb-4">Navigation</h3>
           <ul class="space-y-2">
             <li><a href="index.html#how-we-work" class="text-sm text-text-secondary hover:text-accent transition-colors">How We Work</a></li>
             <li><a href="index.html#services" class="text-sm text-text-secondary hover:text-accent transition-colors">Services</a></li>
-            <li><a href="portfolio.html" class="text-sm text-accent">Showcase</a></li>
+            <li><a href="portfolio.html" class="text-sm text-text-secondary hover:text-accent transition-colors">Showcase</a></li>
             <li><a href="index.html#about" class="text-sm text-text-secondary hover:text-accent transition-colors">About Us</a></li>
             <li><a href="index.html#contact" class="text-sm text-text-secondary hover:text-accent transition-colors">Contact</a></li>
           </ul>
@@ -783,11 +954,10 @@
 
         <!-- Legal -->
         <div>
-          <h3 class="font-display text-lg tracking-wide mb-4">LEGAL</h3>
+          <h3 class="font-semibold text-sm uppercase tracking-wider mb-4">Legal</h3>
           <ul class="space-y-2">
             <li><a href="#" class="text-sm text-text-secondary hover:text-accent transition-colors">Privacy Policy</a></li>
             <li><a href="#" class="text-sm text-text-secondary hover:text-accent transition-colors">Terms of Service</a></li>
-            <li><a href="#" class="text-sm text-text-secondary hover:text-accent transition-colors">Cookie Policy</a></li>
           </ul>
         </div>
       </div>
@@ -795,7 +965,7 @@
       <!-- Bottom Bar -->
       <div class="pt-8 border-t border-white/5">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p class="text-xs text-text-muted text-center md:text-left">
+          <p class="text-xs text-text-muted">
             &copy; 2024 Axel eLearning. All rights reserved.
           </p>
           <p class="text-xs text-text-muted text-center md:text-right max-w-md">
@@ -811,51 +981,50 @@
     // Mobile menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = mobileMenu.querySelectorAll('a');
 
-    menuToggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('is-open');
-      menuToggle.classList.toggle('is-active');
-      menuToggle.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('is-open');
-        menuToggle.classList.remove('is-active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('is-open');
+        menuToggle.classList.toggle('is-active');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
       });
-    });
 
-    // Animate on load
-    document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.animate-on-load');
-      animatedElements.forEach(el => {
-        el.style.opacity = '1';
+      // Close menu when clicking a link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('is-open');
+          menuToggle.classList.remove('is-active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
       });
+    }
+
+    // Animate on load elements
+    document.querySelectorAll('.animate-on-load').forEach(el => {
+      el.style.opacity = '1';
     });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    // Intersection Observer for project sections
+    const projectSections = document.querySelectorAll('.project-section');
 
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const projectObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          projectObserver.unobserve(entry.target);
         }
       });
+    }, observerOptions);
+
+    projectSections.forEach(section => {
+      projectObserver.observe(section);
     });
   </script>
 </body>
